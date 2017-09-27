@@ -1,0 +1,1 @@
+This app is allow you to add the markers with your comments to the map.

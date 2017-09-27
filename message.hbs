@@ -1,0 +1,17 @@
+<div class="message__title">
+    <span class="message__title-wrap">
+        <span class="icon-map-marker message__mark"></span>
+        {{address}}
+    </span>
+    <span class="icon-close message__close"></span>
+</div>
+<ul class="message__list" id="messageList">
+    <span class="message__temp" id="messageTemp">Отзывов пока нет...</span>
+</ul>
+<form class="form" id="form">
+    <div class="form__title">Ваш отзыв</div>
+    <input type="text" name="name" class="form__input" placeholder="Ваше имя">
+    <input type="text" name="place" class="form__input" placeholder="Укажите место">
+    <textarea type="text" name="content" class="form__input form__input_content" placeholder="Поделитесь впечатлениями"></textarea>
+</form>
+<button class="message__button">Добавить</button>
