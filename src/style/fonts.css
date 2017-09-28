@@ -62,4 +62,10 @@
 .icon-map-marker:before {
   content: "\f041";
 }
+.icon-chevron-left:before {
+  content: "\f053";
+}
+.icon-chevron-right:before {
+  content: "\f054";
+}
 

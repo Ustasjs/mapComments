@@ -36,13 +36,13 @@ body {
   font-size: 12px;
   font-weight: 300;
   height: 45px;
-  line-height: 45px;
   padding-left: 15px;
   padding-right: 15px; 
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .message__mark{
   margin-right: 4px;
   font-size: 15px;
@@ -161,4 +161,116 @@ font-size: 15px;
   left: 15px;
   bottom: 17px;
   color: red;
+}
+
+
+/* carousel */
+
+.carousel {
+  position: absolute;
+  background-color: white;
+  width: 330px;
+  height: 200px;
+  z-index: 2;
+  font-family: 'firaSans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 10px;
+  padding-left: 25px;
+  padding-top: 10px;
+  padding-right: 25px;
+  padding-bottom: 10px;
+}
+
+.after::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-top: solid 10px white;
+  border-left: solid 20px transparent;
+  border-right: solid 20px transparent;
+  border-bottom: solid 20px transparent;
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: -30px;
+  transform: translateX(-50%);
+}
+
+.carousel__left, .carousel__right {
+  cursor: pointer;
+  color: #ff8663;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carousel__left {
+  left: 5px;
+}
+
+.carousel__right {
+  right: 5px;
+}
+
+.carousel__close {
+  cursor: pointer;
+  color: #ff8663;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 15px;
+}
+
+.carousel__wrap {
+  height: 150px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.carousel__title {
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.carousel__address {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.carousel__content {
+  height: 80px;
+  overflow: auto;
+}
+
+.carousel__footer {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-top: solid 1px #ff8663;
+}
+
+.carousel__page, .carousel__page:visited {
+  text-decoration: none;
+  color: black;
+}
+
+.carousel__footer .carousel__page_active {
+  color: #ff8663;
+  font-weight: 500;
+}
+
+/* cluster */
+
+.cluster img[src$="1.png"]{
+  left: 4px !important; 
+  top: -4px !important;
+}
+
+.cluster img[src$="2.png"]{
+  left: 7px !important; 
+  top: -4px !important;
 }
