@@ -21,7 +21,7 @@ class geoComment {
     }
 
     initMap() {
-        return new Promise((resolve, reject) => {
+        new Promise((resolve, reject) => {
             window.addEventListener('load', () => {
                 this.map = new google.maps.Map(this.mapContainer, {
                     center: {
@@ -119,6 +119,11 @@ class geoComment {
 
                 resolve();
             });
+        })
+        .then(() => {
+            this.addMapListeners();
+            this.addMessageListeners();
+            this.addClusterListeners();
         })
     }
 
@@ -449,9 +454,4 @@ class geoComment {
 
 let geo = new geoComment();
 
-geo.initMap()
-        .then(() => {
-            geo.addMapListeners();
-            geo.addMessageListeners();
-            geo.addClusterListeners();
-        })
+geo.initMap();
