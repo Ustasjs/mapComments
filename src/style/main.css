@@ -137,7 +137,7 @@ font-size: 15px;
   resize: none;
 }
 
-.message__button {
+.button {
   background-color: #ff8663;
   color: #ffffff;
   border: none;
@@ -147,12 +147,27 @@ font-size: 15px;
   font-size: 12px;
   cursor: pointer;
   outline: none;
+}
+
+.button_message {
   margin-top: 4px;
   margin-right: 15px;
   float: right;
 }
 
-.message__button:active {
+.button_save {
+  position: absolute;
+  left: 130px;
+  top: 10px;
+}
+
+.button_del {
+  position: absolute;
+  left: 230px;
+  top: 10px;
+}
+
+.button:active {
   background-color: rgba(255, 133, 99, 0.65);
 }
 

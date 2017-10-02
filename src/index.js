@@ -122,10 +122,58 @@ class geoComment {
         })
         .then(() => {
             this.addMapListeners();
+            this.localStorageHandler();
             this.addMessageListeners();
             this.addClusterListeners();
+            this.saveMapInit();
             this.dndInit();
         })
+    }
+
+    saveMapInit() {
+        let saveButton = document.getElementById('button_save'),
+            delButton = document.getElementById('button_del');
+
+        saveButton.addEventListener('click', () => {
+            let localMarkers = [],
+                localMap = {
+                    center: this.map.getCenter(),
+                    zoom: this.map.getZoom()
+                };
+            
+            for (let i = 0; i < this.markers.length; i++) {
+                let mark = {
+                    position: this.markers[i].position,
+                    comment: this.markers[i].comment,
+                    address: this.markers[i].address
+                }
+    
+                localMarkers.push(mark);
+            }
+    
+            localStorage.markers = JSON.stringify(localMarkers);
+            localStorage.map = JSON.stringify(localMap);
+        })
+
+        delButton.addEventListener('click', () => {
+            localStorage.clear();
+            document.location.reload();
+        })
+    }
+
+    localStorageHandler() {
+        if (localStorage.markers !== undefined) {
+            let localMarkers = JSON.parse(localStorage.markers),
+                localMap = JSON.parse(localStorage.map);
+
+            for (let i = 0; i < localMarkers.length; i++) {
+                this.appendMarker(localMarkers[i].position, localMarkers[i].comment, localMarkers[i].address)
+            }
+            this.map.setCenter(localMap.center);
+            this.map.setZoom(localMap.zoom);
+        } else {
+            return
+        }
     }
 
     appendMarker(markerPosition, comment, address) {
@@ -239,7 +287,7 @@ class geoComment {
 
         function addComment(e) {
             // alert
-            if (e.target.classList.contains('message__button')) {
+            if (e.target.classList.contains('button_message')) {
                 let form = document.getElementById('form'),
                     context = {
                     };
