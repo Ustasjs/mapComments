@@ -124,6 +124,7 @@ class geoComment {
             this.addMapListeners();
             this.addMessageListeners();
             this.addClusterListeners();
+            this.dndInit();
         })
     }
 
@@ -427,6 +428,60 @@ class geoComment {
                 currentIndex = 1;
             }
         })
+    }
+
+    dndInit() {
+        let element,
+            coords,
+            shiftX,
+            shiftY;
+
+        function move(event) {
+            let elementStyle = getComputedStyle(element),
+                elementHeight = parseInt(elementStyle.height, 10),
+                elementWidth = parseInt(elementStyle.width, 10);
+
+            element.style.left = event.pageX - shiftX + 'px';
+            element.style.top = event.pageY - shiftY + 'px';
+
+            if (event.pageX - shiftX < 0) {
+                element.style.left = 0 + 'px';
+            }
+            if (event.pageY - shiftY < 0) {
+                element.style.top = 0 + 'px';
+            }
+
+            if (event.pageX - shiftX > document.documentElement.clientWidth - elementWidth) {
+                element.style.left = document.documentElement.clientWidth - elementWidth + 'px';
+            }
+            if (event.pageY - shiftY > document.documentElement.clientHeight - elementHeight) {
+                element.style.top = document.documentElement.clientHeight - elementHeight + 'px';
+            }
+        }
+
+        document.body.addEventListener('mousedown', (e) => {
+            if (e.target.closest('.message__title') || e.target.closest('.carousel')) {
+                if (e.target.classList.contains('message__title')) {
+                    element = document.getElementById('message');
+                } else if (e.target.closest('.carousel__main')) {
+                    if (e.target.classList.contains('carousel__address')) {
+                        return
+                    }
+                    element = document.querySelector('.carousel');
+                } else {
+                    return
+                }
+
+                coords = element.getBoundingClientRect();
+                shiftX = event.pageX - coords.left;
+                shiftY = event.pageY - coords.top;
+                
+                document.body.addEventListener('mousemove', move);
+                document.body.addEventListener('mouseup', () => {
+                    document.body.removeEventListener('mousemove', move);
+                })
+            }
+        }) 
     }
 
     render(context, coords) {
