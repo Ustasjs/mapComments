@@ -485,6 +485,7 @@ class geoComment {
             shiftY;
 
         function move(event) {
+            event.preventDefault();
             let elementStyle = getComputedStyle(element),
                 elementHeight = parseInt(elementStyle.height, 10),
                 elementWidth = parseInt(elementStyle.width, 10);
@@ -509,6 +510,7 @@ class geoComment {
 
         document.body.addEventListener('mousedown', (e) => {
             if (e.target.closest('.message__title') || e.target.closest('.carousel')) {
+                e.preventDefault();
                 if (e.target.classList.contains('message__title')) {
                     element = document.getElementById('message');
                 } else if (e.target.closest('.carousel__main')) {
