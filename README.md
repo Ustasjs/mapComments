@@ -19,7 +19,7 @@
 ##### Склонируйте репозиторий и перейдите в папку проекта
 
 ```
-git clone git@github.com/Ustasjs/mapComments.git
+git clone git://github.com/Ustasjs/mapComments.git
 ```
 
 ##### Установите модули локально
